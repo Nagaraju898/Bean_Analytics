@@ -513,10 +513,10 @@
   }
 
   .btn-logout-glass {
-    min-width: 40px;
-    height: 40px;
+    min-width: 44px;
+    height: 44px;
     padding: 0 10px;
-    font-size: 13px;
+    font-size: 16px;
     flex-shrink: 0;
     display: flex !important;
     align-items: center;
@@ -524,13 +524,26 @@
     background: #0f172a;
     border: 1px solid #334155;
     color: #f8fafc;
-    border-radius: 999px;
+    border-radius: 50%;
     cursor: pointer;
     transition: all 0.3s ease;
+    z-index: 101;
+  }
+
+  .btn-logout-glass:hover {
+    background: #1e293b;
+    border-color: #475569;
+    color: #ffffff;
   }
 
   .btn-logout-glass .logout-label {
     display: none; /* keep icon only on smaller screens */
+  }
+
+  .btn-logout-glass .logout-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .content-wrapper-glass {
