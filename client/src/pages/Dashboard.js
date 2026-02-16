@@ -8,12 +8,25 @@ import "../styles/Layout.css";
 import { useAuth } from "../context/AuthContext";
 
 const Dashboard = () => {
-  // Set sidebar open by default on desktop, closed on mobile
-  const [sidebarOpen, setSidebarOpen] = useState(window.innerWidth > 768);
+  // Get initial sidebar state from localStorage or window size
+  const getInitialSidebarState = () => {
+    const saved = localStorage.getItem('sidebarOpen');
+    if (saved !== null) {
+      return JSON.parse(saved);
+    }
+    return window.innerWidth > 768;
+  };
+
+  const [sidebarOpen, setSidebarOpen] = useState(getInitialSidebarState());
   const [refreshTrigger, setRefreshTrigger] = useState(0);
   const { logout, user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+
+  // Save sidebar state to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('sidebarOpen', JSON.stringify(sidebarOpen));
+  }, [sidebarOpen]);
 
   // Persist current page on refresh
   useEffect(() => {
