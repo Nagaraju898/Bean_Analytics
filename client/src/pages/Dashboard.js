@@ -8,7 +8,8 @@ import "../styles/Layout.css";
 import { useAuth } from "../context/AuthContext";
 
 const Dashboard = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  // Set sidebar open by default on desktop, closed on mobile
+  const [sidebarOpen, setSidebarOpen] = useState(window.innerWidth > 768);
   const [refreshTrigger, setRefreshTrigger] = useState(0);
   const { logout, user } = useAuth();
   const navigate = useNavigate();
@@ -20,6 +21,20 @@ const Dashboard = () => {
       navigate('/login');
     }
   }, [user, navigate]);
+
+  // Handle window resize
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 768) {
+        setSidebarOpen(true);
+      } else {
+        setSidebarOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Handle file upload success - refresh data
   const handleUploadSuccess = () => {

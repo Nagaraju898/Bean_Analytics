@@ -462,6 +462,11 @@
 }
 
 @media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+  }
+
   .topbar-glass {
     padding: 0 16px;
     height: 65px;
