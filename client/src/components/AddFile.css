@@ -169,19 +169,84 @@
   border: 1px solid rgba(239, 68, 68, 0.3);
 }
 
+@media (max-width: 768px) {
+  .add-file-container {
+    min-height: calc(100vh - 75px);
+    padding-top: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .add-file-card {
+    width: 95%;
+    padding: 28px;
+    max-width: 100%;
+  }
+
+  .add-file-card h2 {
+    font-size: 24px;
+  }
+
+  .file-label {
+    padding: 28px;
+  }
+
+  .upload-icon {
+    font-size: 40px;
+  }
+
+  .upload-text {
+    font-size: 15px;
+  }
+
+  .upload-hint {
+    font-size: 12px;
+  }
+}
+
 @media (max-width: 480px) {
   .add-file-container {
-    min-height: calc(100vh - 75px - 80px);
+    min-height: calc(100vh - 75px);
     padding-top: 20px;
   }
 
   .add-file-card {
     width: 95%;
-    padding: 24px;
+    padding: 20px;
+  }
+
+  .add-file-card h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
   }
 
   .file-label {
-    padding: 24px;
+    padding: 20px;
+    gap: 12px;
+  }
+
+  .upload-icon {
+    font-size: 36px;
+  }
+
+  .upload-text {
+    font-size: 14px;
+  }
+
+  .upload-hint {
+    font-size: 11px;
+  }
+
+  .info-box {
+    padding: 12px;
+  }
+
+  .info-box h3 {
+    font-size: 13px;
+  }
+
+  .info-box ul {
+    font-size: 12px;
   }
 }
   
