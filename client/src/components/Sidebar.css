@@ -93,6 +93,12 @@
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
   z-index: 999;
+  pointer-events: none; /* Don't block clicks when inactive */
+}
+
+.sidebar-overlay.active {
+  display: block;
+  pointer-events: auto; /* Block clicks when active */
 }
 
 /* ===== Mobile Responsive ===== */
@@ -111,26 +117,36 @@
 
 @media (max-width: 768px) {
   .mobile-menu-toggle {
-    display: none; /* Hide hamburger menu - sidebar always visible */
+    display: block;
   }
 
   .sidebar {
     width: 260px;
-    transform: translateX(0); /* Keep sidebar visible */
-    margin-left: 0;
+    transform: translateX(-100%);
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    box-shadow: none;
   }
 
   .sidebar.open {
     transform: translateX(0);
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.5);
+  }
+
+  .sidebar-overlay {
+    display: none;
   }
 
   .sidebar-overlay.active {
-    display: none; /* No overlay needed - sidebar always visible */
+    display: block;
+    z-index: 999;
   }
 
   .main-content {
-    margin-left: 260px;
-    width: calc(100% - 260px);
-    padding: 16px;
+    margin-left: 0;
+    width: 100%;
+    padding: 80px 16px 16px 16px;
   }
 }
