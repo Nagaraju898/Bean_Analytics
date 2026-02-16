@@ -93,13 +93,9 @@
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
   z-index: 999;
-  pointer-events: none; /* Don't block clicks when inactive */
 }
 
-.sidebar-overlay.active {
-  display: block;
-  pointer-events: auto; /* Block clicks when active */
-}
+/* ===== Mobile Responsive ===== */
 
 @media (max-width: 1024px) {
   .sidebar {

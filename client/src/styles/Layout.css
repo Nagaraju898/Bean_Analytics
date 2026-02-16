@@ -470,35 +470,17 @@
   .topbar-glass {
     padding: 0 16px;
     height: 65px;
-    gap: 12px;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    display: flex;
-    align-items: center;
-  }
-
-  .topbar-actions-glass {
-    gap: 8px;
-    flex-shrink: 0;
-    margin-left: 0;
-    display: flex;
-    align-items: center;
+    gap: 16px;
   }
 
   .topbar-title-glass {
     font-size: 18px;
-    flex: 0 1 auto;
-    min-width: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 
   .logo-icon-topbar {
     width: 40px;
     height: 40px;
     font-size: 24px;
-    flex-shrink: 0;
   }
 
   .logo-text-topbar {
@@ -509,41 +491,20 @@
     width: 40px;
     height: 40px;
     font-size: 20px;
-    flex-shrink: 0;
   }
 
   .btn-logout-glass {
-    min-width: 44px;
-    height: 44px;
-    padding: 0 10px;
-    font-size: 16px;
-    flex-shrink: 0;
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    background: #0f172a;
-    border: 1px solid #334155;
-    color: #f8fafc;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    z-index: 101;
-  }
-
-  .btn-logout-glass:hover {
-    background: #1e293b;
-    border-color: #475569;
-    color: #ffffff;
+    padding: 8px 14px;
+    font-size: 13px;
   }
 
   .btn-logout-glass .logout-label {
     display: none; /* keep icon only on smaller screens */
   }
 
-  .btn-logout-glass .logout-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .btn-logout-glass {
+    min-width: 40px;
+    padding: 0 10px;
   }
 
   .content-wrapper-glass {
