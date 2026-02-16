@@ -88,17 +88,23 @@
   display: none;
   position: fixed;
   top: 0;
-  left: 0;
+  left: 260px; /* Start after sidebar width so it doesn't cover sidebar */
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
   z-index: 999;
-  pointer-events: none; /* Don't block clicks when inactive */
+  pointer-events: none;
 }
 
 .sidebar-overlay.active {
   display: block;
-  pointer-events: auto; /* Block clicks when active */
+  pointer-events: auto; /* Clickable only in the dark area, not on sidebar */
+}
+
+.sidebar-menu {
+  position: relative;
+  pointer-events: auto; /* Ensure menu items are always clickable */
+  z-index: 1001; /* Above everything */
 }
 
 /* ===== Mobile Responsive ===== */
@@ -128,20 +134,32 @@
     top: 0;
     z-index: 1000;
     box-shadow: none;
+    pointer-events: auto; /* Sidebar itself is clickable */
   }
 
   .sidebar.open {
     transform: translateX(0);
     box-shadow: 4px 0 12px rgba(0, 0, 0, 0.5);
+    pointer-events: auto; /* Ensure open sidebar is clickable */
+  }
+
+  .sidebar-menu a {
+    pointer-events: auto; /* Menu links are clickable */
+    cursor: pointer;
   }
 
   .sidebar-overlay {
-    display: none;
+    display: none !important;
+    left: 260px; /* Start after sidebar width */
+    width: calc(100% - 260px); /* Only cover area to the right */
+    pointer-events: none; /* Don't block anything initially */
   }
 
   .sidebar-overlay.active {
-    display: block;
+    display: block !important;
     z-index: 999;
+    left: 260px; /* Only covers right side, not sidebar */
+    pointer-events: auto; /* Clickable to close sidebar */
   }
 
   .main-content {

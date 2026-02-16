@@ -51,7 +51,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
 
           <li>
             <NavLink
-              to="/dashboard/add-file"
+              to="add-file"
               className={({ isActive }) => (isActive ? "active" : "")}
               onClick={closeSidebar}
             >
@@ -61,9 +61,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
 
           <li>
             <NavLink
-              to="/dashboard"
+              to="."
               className={({ isActive }) => (isActive ? "active" : "")}
               onClick={closeSidebar}
+              end
             >
               📊 Dashboard
             </NavLink>
@@ -71,7 +72,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
 
           <li>
             <NavLink
-              to="/dashboard/data-table"
+              to="data-table"
               className={({ isActive }) => (isActive ? "active" : "")}
               onClick={closeSidebar}
             >
