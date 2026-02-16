@@ -111,26 +111,26 @@
 
 @media (max-width: 768px) {
   .mobile-menu-toggle {
-    display: block;
+    display: none; /* Hide hamburger menu - sidebar always visible */
   }
 
   .sidebar {
-    transform: translateX(-100%);
-    box-shadow: none;
+    width: 260px;
+    transform: translateX(0); /* Keep sidebar visible */
+    margin-left: 0;
   }
 
   .sidebar.open {
     transform: translateX(0);
-    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.5);
   }
 
   .sidebar-overlay.active {
-    display: block;
+    display: none; /* No overlay needed - sidebar always visible */
   }
 
   .main-content {
-    margin-left: 0;
-    width: 100%;
-    padding: 80px 16px 16px 16px;
+    margin-left: 260px;
+    width: calc(100% - 260px);
+    padding: 16px;
   }
 }
