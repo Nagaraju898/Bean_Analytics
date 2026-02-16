@@ -470,17 +470,27 @@
   .topbar-glass {
     padding: 0 16px;
     height: 65px;
-    gap: 16px;
+    gap: 12px;
+    flex-wrap: nowrap;
+  }
+
+  .topbar-actions-glass {
+    gap: 8px;
+    flex-shrink: 0;
+    margin-left: auto;
   }
 
   .topbar-title-glass {
     font-size: 18px;
+    flex: 1;
+    min-width: 0;
   }
 
   .logo-icon-topbar {
     width: 40px;
     height: 40px;
     font-size: 24px;
+    flex-shrink: 0;
   }
 
   .logo-text-topbar {
@@ -491,20 +501,22 @@
     width: 40px;
     height: 40px;
     font-size: 20px;
-  }
-
-  .btn-logout-glass {
-    padding: 8px 14px;
-    font-size: 13px;
-  }
-
-  .btn-logout-glass .logout-label {
-    display: none; /* keep icon only on smaller screens */
+    flex-shrink: 0;
   }
 
   .btn-logout-glass {
     min-width: 40px;
+    height: 40px;
     padding: 0 10px;
+    font-size: 13px;
+    flex-shrink: 0;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn-logout-glass .logout-label {
+    display: none; /* keep icon only on smaller screens */
   }
 
   .content-wrapper-glass {
