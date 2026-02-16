@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: projectc-commerce
+    env: node
+    buildCommand: npm run install-all && cd client && npm run build
+    startCommand: cd server && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: JWT_SECRET
+        generateValue: true
+    disk:
+      name: data
+      mountPath: /opt/render/project/src/server/database
+      sizeGB: 1

@@ -1,0 +1,314 @@
+.dashboard-container {
+  padding: 20px 16px;
+  background: radial-gradient(circle at top left, #0f172a 0%, #020617 40%, #020617 100%);
+  min-height: calc(100vh - 65px);
+  overflow-y: auto;
+  position: relative;
+}
+
+.dashboard-container::before {
+  content: "";
+  position: absolute;
+  top: -200px;
+  left: -200px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.15), transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.dashboard-container::after {
+  content: "";
+  position: absolute;
+  bottom: -150px;
+  right: -150px;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.1), transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.dashboard-title {
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 24px;
+  color: #ffffff;
+  position: relative;
+  z-index: 1;
+  letter-spacing: -0.5px;
+}
+
+.summary-section {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.summary-card {
+  background: rgba(255, 255, 255, 0.04);
+  padding: 22px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.summary-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.16);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 48px rgba(99, 102, 241, 0.2);
+}
+
+.summary-card h4 {
+  font-size: 11px;
+  color: #cbd5f5;
+  font-weight: 600;
+  margin: 0 0 10px 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.summary-card p {
+  font-size: 32px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #6366f1, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+}
+
+.chart-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.chart-card {
+  background: rgba(255, 255, 255, 0.04);
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.chart-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.16);
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(99, 102, 241, 0.25);
+}
+
+.chart-card h3 {
+  margin: 0 0 16px 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #f0f4f8;
+  letter-spacing: -0.3px;
+}
+
+.chart-card svg {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.recharts-surface {
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
+}
+
+.recharts-default-tooltip {
+  background: rgba(15, 23, 42, 0.9) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4) !important;
+}
+
+.recharts-tooltip-label {
+  color: #e0e7ff !important;
+}
+
+.recharts-tooltip-item {
+  color: #cbd5f5 !important;
+}
+
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: rgba(255, 255, 255, 0.08) !important;
+}
+
+.recharts-text {
+  fill: #cbd5f5 !important;
+  font-size: 12px !important;
+}
+
+.recharts-legend-wrapper {
+  padding-top: 12px !important;
+}
+
+.ai-section {
+  margin-top: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.ai-section h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 16px;
+  letter-spacing: -0.3px;
+}
+
+.ai-card {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(139, 92, 246, 0.08));
+  color: #e0e7ff;
+  padding: 18px 20px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  line-height: 1.7;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.15);
+  transition: all 0.3s ease;
+}
+
+.ai-card:hover {
+  transform: translateX(4px);
+  border-color: rgba(99, 102, 241, 0.4);
+  box-shadow: 0 8px 28px rgba(99, 102, 241, 0.25);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.16), rgba(139, 92, 246, 0.12));
+}
+
+.ai-card.empty {
+  background: rgba(255, 255, 255, 0.03);
+  color: #9fb0d9;
+  border-color: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.loading {
+  text-align: center;
+  padding: 60px 20px;
+  color: #cbd5f5;
+  font-size: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .chart-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 16px 12px;
+  }
+
+  .dashboard-title {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  .summary-section {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .summary-card {
+    padding: 18px;
+  }
+
+  .summary-card h4 {
+    font-size: 10px;
+  }
+
+  .summary-card p {
+    font-size: 28px;
+  }
+
+  .chart-section {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  .chart-card {
+    padding: 18px;
+  }
+
+  .chart-card h3 {
+    font-size: 15px;
+    margin-bottom: 14px;
+  }
+
+  .ai-card {
+    padding: 16px 18px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-container {
+    padding: 12px 10px;
+    min-height: calc(100vh - 75px - 80px);
+    padding-bottom: 20px;
+  }
+
+  .dashboard-title {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+
+  .summary-section {
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .summary-card {
+    padding: 16px;
+  }
+
+  .summary-card p {
+    font-size: 24px;
+  }
+
+  .chart-section {
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .chart-card {
+    padding: 14px;
+  }
+
+  .chart-card h3 {
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+
+  .ai-section {
+    gap: 12px;
+  }
+
+  .ai-card {
+    padding: 14px;
+    font-size: 12px;
+  }
+}

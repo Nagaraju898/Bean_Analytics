@@ -1,0 +1,539 @@
+/* ===== Global Layout ===== */
+.layout {
+  display: flex;
+  min-height: 100vh;
+  background: radial-gradient(circle at top left, #0f172a 0%, #020617 40%, #0a0e27 100%);
+  font-family: 'Segoe UI', 'Poppins', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.layout::before {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.15), rgba(99, 102, 241, 0) 70%);
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+  animation: float 20s ease-in-out infinite;
+}
+
+.layout::after {
+  content: '';
+  position: fixed;
+  bottom: -30%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.1), rgba(34, 197, 94, 0) 70%);
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+  animation: float 25s ease-in-out infinite reverse;
+}
+
+/* ===== New Layout (No Sidebar) ===== */
+.layout-no-sidebar {
+  min-height: 100vh;
+  background: radial-gradient(circle at top left, #0f172a 0%, #020617 40%, #0a0e27 100%);
+  font-family: 'Segoe UI', 'Poppins', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.layout-no-sidebar::before {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.15), rgba(99, 102, 241, 0) 70%);
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+  animation: float 20s ease-in-out infinite;
+}
+
+.layout-no-sidebar::after {
+  content: '';
+  position: fixed;
+  bottom: -30%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.1), rgba(34, 197, 94, 0) 70%);
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+  animation: float 25s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  50% {
+    transform: translateY(-30px) translateX(20px);
+  }
+}
+
+/* ===== Sidebar (Visible) ===== */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.95) 0%, rgba(10, 14, 39, 0.95) 100%);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  min-height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  box-shadow: 8px 0 32px rgba(0, 0, 0, 0.3);
+  overflow-y: auto;
+}
+
+/* Sidebar Header with Logo */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  gap: 12px;
+}
+
+.sidebar-logo-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  justify-content: center;
+}
+
+.logo-icon {
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2));
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.logo-text {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  background: linear-gradient(135deg, #60a5fa, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Sidebar Toggle (hide for now) */
+.sidebar-toggle {
+  display: none;
+}
+
+/* Sidebar Menu */
+.sidebar-menu {
+  list-style: none;
+  padding: 16px 12px;
+  flex: 1;
+  margin: 0;
+}
+
+.sidebar-menu li {
+  margin-bottom: 8px;
+  list-style: none;
+}
+
+.sidebar-menu li a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  color: rgba(226, 232, 240, 0.7);
+  text-decoration: none;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  font-weight: 500;
+}
+
+.sidebar-menu li a:hover {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.1));
+  color: #e2e8f0;
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+.sidebar-menu li a.active {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(139, 92, 246, 0.2));
+  color: #60a5fa;
+  border-color: rgba(59, 130, 246, 0.5);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+}
+
+.menu-icon {
+  font-size: 20px;
+  min-width: 24px;
+}
+
+.menu-text {
+  font-size: 14px;
+  white-space: nowrap;
+  flex: 1;
+}
+
+/* ===== Main Content Full ===== */
+.main-content-full {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 480px) {
+  .main-content-full {
+    min-height: 100vh;
+    overflow-y: hidden;
+  }
+}
+
+.main-content {
+  margin-left: 280px;
+  width: calc(100% - 280px);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+}
+
+.main-content.collapsed {
+  margin-left: 0;
+  width: 100%;
+}
+
+/* ===== Glasmorphic Topbar ===== */
+.topbar-glass {
+  height: 75px;
+  background: rgba(15, 23, 42, 0.7);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  gap: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Back Button Glasmorphic */
+.back-btn-glass {
+  display: none;
+}
+
+/* Logo in Topbar */
+.logo-topbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon-topbar {
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2));
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.logo-text-topbar {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  background: linear-gradient(135deg, #60a5fa, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Topbar Title */
+.topbar-title-glass {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #e0e7ff, #cbd5f5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.5px;
+}
+
+/* Topbar Actions */
+.topbar-actions-glass {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.btn-logout-glass {
+  min-width: auto;
+  height: 40px;
+  padding: 0 14px;
+  background: #0f172a;
+  border: 1px solid #334155;
+  color: #f8fafc;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex-shrink: 0;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.btn-logout-glass:hover {
+  background: #111827;
+  border-color: #475569;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(15, 23, 42, 0.25);
+}
+
+.btn-logout-glass:active {
+  transform: translateY(0);
+}
+
+/* Primary attracting logout variant */
+.btn-logout-primary {
+  background: #0f172a;
+  border: 1px solid #334155;
+  color: #f8fafc;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.25);
+}
+
+.btn-logout-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.3);
+}
+
+.btn-logout-glass .logout-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+.btn-logout-glass .logout-label {
+  display: inline-block;
+  color: inherit;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  font-size: 14px;
+  margin: 0;
+}
+
+.btn-logout-glass .logout-label {
+  display: inline-block;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  color: inherit;
+}
+
+/* Content Wrapper */
+.content-wrapper-glass {
+  flex: 1;
+  overflow-y: auto;
+  padding: 32px;
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(59, 130, 246, 0.3) transparent;
+}
+
+@media (max-width: 768px) {
+  .content-wrapper-glass {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .content-wrapper-glass {
+    padding: 16px;
+    padding-bottom: 130px;
+  }
+}
+
+.content-wrapper-glass::-webkit-scrollbar {
+  width: 8px;
+}
+
+.content-wrapper-glass::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.content-wrapper-glass::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.3);
+  border-radius: 4px;
+}
+
+.content-wrapper-glass::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.5);
+}
+
+/* Old wrapper for compatibility */
+.content-wrapper {
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* Old Topbar */
+.topbar {
+  display: none;
+}
+
+.toggle-btn,
+.topbar-title,
+.topbar-actions,
+.topbar-logout {
+  display: none;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
+  .topbar-glass {
+    padding: 0 24px;
+    height: 70px;
+  }
+
+  .topbar-title-glass {
+    font-size: 20px;
+  }
+
+  .logo-icon-topbar {
+    width: 44px;
+    height: 44px;
+    font-size: 28px;
+  }
+
+  .logo-text-topbar {
+    font-size: 18px;
+  }
+
+  .btn-logout-glass {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+
+  .content-wrapper-glass {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .topbar-glass {
+    padding: 0 16px;
+    height: 65px;
+    gap: 16px;
+  }
+
+  .topbar-title-glass {
+    font-size: 18px;
+  }
+
+  .logo-icon-topbar {
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+  }
+
+  .logo-text-topbar {
+    display: none;
+  }
+
+  .back-btn-glass {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  .btn-logout-glass {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+
+  .btn-logout-glass .logout-label {
+    display: none; /* keep icon only on smaller screens */
+  }
+
+  .btn-logout-glass {
+    min-width: 40px;
+    padding: 0 10px;
+  }
+
+  .content-wrapper-glass {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .topbar-glass {
+    padding: 0 12px;
+    height: 60px;
+    gap: 12px;
+  }
+
+  .topbar-title-glass {
+    font-size: 16px;
+  }
+
+  .back-btn-glass {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+  }
+
+  .btn-logout-glass {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .btn-logout-glass .logout-label {
+    display: none;
+  }
+
+  .content-wrapper-glass {
+    padding: 12px;
+  }
+}
