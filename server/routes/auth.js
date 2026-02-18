@@ -4,8 +4,10 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { body, validationResult } = require('express-validator');
 const db = require('../database/db');
+const config = require('../config');
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-production';
+const JWT_SECRET = config.JWT_SECRET;
+const JWT_EXPIRE = config.JWT_EXPIRE;
 
 // Register
 router.post('/register', [
@@ -39,7 +41,11 @@ router.post('/register', [
         }
 
         console.log('User created successfully:', email);
-        const token = jwt.sign({ userId: this.lastID, username, email }, JWT_SECRET);
+        const token = jwt.sign(
+          { userId: this.lastID, username, email },
+          JWT_SECRET,
+          { expiresIn: JWT_EXPIRE }
+        );
         res.json({ token, userId: this.lastID, username, email });
       }
     );
@@ -86,7 +92,11 @@ router.post('/login', [
           return res.status(401).json({ error: 'Invalid credentials' });
         }
 
-        const token = jwt.sign({ userId: user.id, username: user.username }, JWT_SECRET);
+        const token = jwt.sign(
+          { userId: user.id, username: user.username },
+          JWT_SECRET,
+          { expiresIn: JWT_EXPIRE }
+        );
         console.log('Login successful for user:', email);
         res.json({ token, userId: user.id, username: user.username, email: user.email });
       }

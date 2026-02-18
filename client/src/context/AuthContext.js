@@ -4,7 +4,7 @@ import React, {
   useContext,
   useEffect
 } from "react";
-import axios from "axios";
+import API from "../config/axiosConfig";
 
 const AuthContext = createContext(null);
 
@@ -25,9 +25,6 @@ export const AuthProvider = ({ children }) => {
 
   // 🔥 Restore session on refresh
   useEffect(() => {
-    // Always clear auth header on app load first
-    delete axios.defaults.headers.common["Authorization"];
-    
     const storedToken = localStorage.getItem("token");
 
     if (storedToken) {
@@ -47,11 +44,6 @@ export const AuthProvider = ({ children }) => {
           throw new Error("Token missing required fields");
         }
 
-        // Only set header if token is valid
-        axios.defaults.headers.common[
-          "Authorization"
-        ] = `Bearer ${storedToken}`;
-
         setUser({
           id: payload.userId,
           username: payload.username,
@@ -64,7 +56,6 @@ export const AuthProvider = ({ children }) => {
         console.error("Invalid token in storage:", error);
         // Clear invalid token
         localStorage.removeItem("token");
-        delete axios.defaults.headers.common["Authorization"];
       }
     }
     
@@ -75,7 +66,7 @@ export const AuthProvider = ({ children }) => {
   // ✅ LOGIN
   const login = async (email, password) => {
     try {
-      const response = await axios.post("/api/auth/login", {
+      const response = await API.post("/auth/login", {
         email,
         password
       });
@@ -83,9 +74,6 @@ export const AuthProvider = ({ children }) => {
       const { token, userId, username } = response.data;
 
       localStorage.setItem("token", token);
-      axios.defaults.headers.common[
-        "Authorization"
-      ] = `Bearer ${token}`;
 
       const payload = JSON.parse(
         atob(token.split(".")[1])
@@ -105,6 +93,7 @@ export const AuthProvider = ({ children }) => {
         success: false,
         error:
           error.response?.data?.error ||
+          error.message ||
           "Login failed"
       };
     }
@@ -113,8 +102,8 @@ export const AuthProvider = ({ children }) => {
   // ✅ REGISTER
   const register = async (username, email, password) => {
     try {
-      const response = await axios.post(
-        "/api/auth/register",
+      const response = await API.post(
+        "/auth/register",
         {
           username,
           email,
@@ -125,9 +114,6 @@ export const AuthProvider = ({ children }) => {
       const { token } = response.data;
 
       localStorage.setItem("token", token);
-      axios.defaults.headers.common[
-        "Authorization"
-      ] = `Bearer ${token}`;
 
       const payload = JSON.parse(
         atob(token.split(".")[1])
@@ -148,6 +134,7 @@ export const AuthProvider = ({ children }) => {
         success: false,
         error:
           error.response?.data?.error ||
+          error.message ||
           "Registration failed"
       };
     }
@@ -156,7 +143,6 @@ export const AuthProvider = ({ children }) => {
   // ✅ LOGOUT
   const logout = () => {
     localStorage.removeItem("token");
-    delete axios.defaults.headers.common["Authorization"];
     setToken(null);
     setUser(null);
     setIsAuthenticated(false);

@@ -1,8 +1,9 @@
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 const fs = require('fs');
+const config = require('../config');
 
-const DB_PATH = path.join(__dirname, 'database', 'app.db');
+const DB_PATH = config.DATABASE_PATH;
 
 let db = null;
 

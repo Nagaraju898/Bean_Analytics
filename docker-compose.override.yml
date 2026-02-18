@@ -1,0 +1,164 @@
+################################################################################
+# Docker Compose Override - Development Configuration
+#
+# This file is automatically merged with docker-compose.yml by Docker Compose
+# and is ONLY used for local development.
+#
+# ⚠️  DO NOT DEPLOY THIS TO PRODUCTION - Remove before deployment!
+#
+# Features:
+#   - Live code reloading with volume mounts
+#   - Relaxed resource limits
+#   - Enhanced logging
+#   - No health check delays
+#   - Development-friendly settings
+################################################################################
+
+services:
+  ############################################################################
+  # Backend Service - Development with Live Reload
+  ############################################################################
+  backend:
+    # Mount source code for live reloading
+    volumes:
+      - ./server:/app
+      - /app/node_modules  # Prevent host node_modules from overwriting container
+
+    # Development environment
+    environment:
+      NODE_ENV: development
+      DEBUG: "*"
+    
+    # Expose directly to host for debugging
+    ports:
+      - "5000:5000"
+    
+    # Faster health check for development
+    healthcheck:
+      start_period: 10s
+      interval: 10s
+    
+    # Don't restart on failure during dev
+    restart: no
+    
+    # Remove resource limits for development
+    deploy:
+      resources:
+        limits: {}
+        reservations: {}
+
+  ############################################################################
+  # Frontend Service - Development with Hot Reload
+  ############################################################################
+  frontend:
+    # Mount source code for React hot reload
+    volumes:
+      - ./client/src:/app/src
+      - ./client/public:/app/public
+      - /app/node_modules  # Prevent overwriting container node_modules
+    
+    # Development environment
+    environment:
+      NODE_ENV: development
+      REACT_APP_API_URL: http://localhost/api
+    
+    # Expose dev server directly
+    ports:
+      - "3000:3000"
+    
+    # Enable interactive mode for React dev server
+    stdin_open: true
+    tty: true
+    
+    # Faster health check
+    healthcheck:
+      start_period: 15s
+      interval: 10s
+    
+    # Don't restart on failure
+    restart: no
+    
+    # Remove resource limits
+    deploy:
+      resources:
+        limits: {}
+        reservations: {}
+
+  ############################################################################
+  # Nginx - Development with Debug Logging
+  ############################################################################
+  nginx:
+    # Development environment
+    environment:
+      DEBUG: "true"
+    
+    # Expose all ports for testing
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:80"  # Extra port for testing without SSL
+
+    # More verbose logging
+    logging:
+      driver: json-file
+      options:
+        max-size: 50m
+        max-file: 10
+        labels: env=development
+    
+    # Faster restarts
+    restart: no
+    
+    # Remove resource limits
+    deploy:
+      resources:
+        limits: {}
+        reservations: {}
+
+  ############################################################################
+  # Optional: PostgreSQL for Development
+  # Uncomment to test with PostgreSQL locally
+  ############################################################################
+  # db:
+  #   environment:
+  #     POSTGRES_PASSWORD: dev-password-only
+  #   ports:
+  #     - "5432:5432"
+  #   restart: no
+  #   volumes:
+  #     - dev_db_data:/var/lib/postgresql/data
+
+################################################################################
+# Development Volumes
+################################################################################
+# volumes:
+#   dev_db_data:
+#     driver: local
+
+################################################################################
+# Development Notes
+################################################################################
+#
+# Start development:
+#   docker-compose up -d
+#
+# View logs:
+#   docker-compose logs -f backend
+#   docker-compose logs -f frontend
+#   docker-compose logs -f nginx
+#
+# Access services:
+#   Backend:  http://localhost:5000/api/health
+#   Frontend: http://localhost:3000 (React dev server with hot reload)
+#   Nginx:    http://localhost:80 or https://localhost:443
+#
+# Code changes auto-reload:
+#   - Backend: Update index.js or routes/
+#   - Frontend: Update src/ directory
+#   - Nginx: Changes require docker-compose restart nginx
+#
+# Production deployment:
+#   1. Remove this file: rm docker-compose.override.yml
+#   2. Rebuild: docker-compose build
+#   3. Deploy: docker-compose -f docker-compose.yml up -d
+#

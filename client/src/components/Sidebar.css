@@ -144,27 +144,32 @@
   }
 
   .sidebar-menu a {
-    pointer-events: auto; /* Menu links are clickable */
+    pointer-events: auto;
     cursor: pointer;
+    padding: 12px 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
   }
 
   .sidebar-overlay {
     display: none !important;
-    left: 260px; /* Start after sidebar width */
-    width: calc(100% - 260px); /* Only cover area to the right */
-    pointer-events: none; /* Don't block anything initially */
+    left: 260px;
+    width: calc(100% - 260px);
+    pointer-events: none;
   }
 
   .sidebar-overlay.active {
     display: block !important;
     z-index: 999;
-    left: 260px; /* Only covers right side, not sidebar */
-    pointer-events: auto; /* Clickable to close sidebar */
+    left: 260px;
+    pointer-events: auto;
   }
 
   .main-content {
     margin-left: 0;
     width: 100%;
-    padding: 80px 16px 16px 16px;
+    padding: 80px 16px 90px 16px;
   }
 }

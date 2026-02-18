@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import API from "../config/axiosConfig";
 import {
   PieChart,
   Pie,
@@ -36,12 +36,7 @@ const DashboardView = ({ refreshTrigger = 0 }) => {
 
   const fetchAnalytics = async () => {
     try {
-      const token = localStorage.getItem('token');
-      const res = await axios.get("/api/analytics/dashboard", {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      const res = await API.get("/analytics/dashboard");
       
       if (res.data.hasData) {
         setAnalytics(res.data.analytics);
