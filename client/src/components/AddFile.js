@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './AddFile.css';
 
@@ -7,6 +8,7 @@ const AddFile = ({ onUploadSuccess }) => {
   const [uploading, setUploading] = useState(false);
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -67,12 +69,13 @@ const AddFile = ({ onUploadSuccess }) => {
       setFile(null);
       document.getElementById('file-input').value = '';
       
-      // Call parent callback to refresh data instead of reloading page
+      // Call parent callback to refresh data
       if (onUploadSuccess) {
-        setTimeout(() => {
-          onUploadSuccess();
-        }, 1500);
+        onUploadSuccess();
       }
+      
+      // Navigate to dashboard immediately
+      navigate('/dashboard');
     } catch (err) {
       console.error('Upload error details:', err);
       console.error('Response status:', err.response?.status);
